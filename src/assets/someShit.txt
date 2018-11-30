@@ -1,0 +1,16 @@
+select user.uid, prs.name.inv.Desc, iti.*
+    from User Inner Join personagem prs
+    on user.id = prs.u_id
+    inner join inventario inv
+    on prs.id = inv.id_Personagem
+    Inner join item_inv iti
+    on inv.id = iti.id_inventario
+
+    ====
+
+
+    uid | nome | desc | tp | qt | inv |
+    ------------------------------------
+    a1  | h.p. | arnas | 1 | q | 1
+
+    
