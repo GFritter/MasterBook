@@ -1,0 +1,98 @@
+<!--
+  Generated template for the CreateCharPage page.
+
+  See http://ionicframework.com/docs/components/#navigation for more info on
+  Ionic pages and navigation.
+-->
+<ion-header>
+
+  <ion-navbar>
+    <ion-title>Create a new Character</ion-title>
+  </ion-navbar>
+
+</ion-header>
+
+
+<ion-content padding>
+
+  Name
+  <ion-input [(ngModel)] = 'temp.name'>
+    
+  </ion-input>
+
+  <br>
+  Class
+  <ion-input [(ngModel)] = 'temp.class' >
+      
+   </ion-input>
+
+   <br>
+
+   Race
+   <ion-input [(ngModel)] = 'temp.race'>
+     
+   </ion-input>
+
+    <br>
+    Level
+  <ion-input [(ngModel)] = 'temp.level'>
+    
+  </ion-input>
+
+  <br>
+
+  Alignment
+  <ion-input [(ngModel)] = "temp.alignment">
+
+  </ion-input>
+
+  <ion-grid>
+    <ion-row>
+    <ion-col>STR
+      <input type="number" [(ngModel)] = 'temp.strength'>
+    </ion-col> 
+    <ion-col>DEX 
+      <input type="number"  [(ngModel)] = 'temp.dexterity'>
+    </ion-col> 
+  </ion-row>
+    <ion-row>  
+      <ion-col>CON
+        <input type="number"  [(ngModel)] = 'temp.constitution'>
+      </ion-col> 
+      <ion-col>INT 
+        <input type="number"  [(ngModel)] = 'temp.inteligence'>
+      </ion-col>
+    </ion-row>
+    <ion-row> 
+      <ion-col>WIS
+        <input type="number"  [(ngModel)] = 'temp.wisdom'>
+      </ion-col>
+      <ion-col>CHA 
+        <input type="number"  [(ngModel)] = 'temp.charisma'>
+      </ion-col>
+      </ion-row>
+  </ion-grid>
+
+  HP
+  <input type="number" [(ngModel)] = 'temp.hp_max'>
+
+  Armor Class
+  <input type="number" [(ngModel)] = 'temp.ac'>
+
+  Experience
+  <input type="number" [(ngModel)] = 'temp.experience'>
+
+  Background
+  <ion-input item-height="30em" [(ngModel)] = 'temp.background'>
+    
+  </ion-input>
+
+
+  
+</ion-content>
+
+<ion-footer>
+  <ion-toolbar>
+    <button ion-button (click)='addCharacter()'> Adicionar </button>
+  </ion-toolbar>
+</ion-footer>

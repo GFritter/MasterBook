@@ -1,0 +1,8 @@
+{
+  "name": "MasterDatabase",
+  "integrations": {
+    "cordova": {}
+  },
+  "type": "ionic-angular",
+  "pro_id": "be11941e"
+}

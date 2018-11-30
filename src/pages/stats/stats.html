@@ -1,0 +1,66 @@
+<!--
+  Generated template for the StatsPage page.
+
+  See http://ionicframework.com/docs/components/#navigation for more info on
+  Ionic pages and navigation.
+-->
+<ion-header>
+
+  <ion-navbar>
+    <ion-title><h1>{{actual.name}}</h1>
+    <h2>Class: {{actual.class}}     Race: {{actual.race}}</h2></ion-title>
+  </ion-navbar>
+
+</ion-header>
+
+
+<ion-content padding>
+
+  <ion-grid>
+
+    <ion-row>
+      <ion-col>
+        STR : {{actual.strength}}
+        Mod: {{actual.str_mod}}
+      </ion-col>
+      <ion-col>
+        DEX : {{actual.dexterity}}
+        Mod: {{actual.dex_mod}}
+      </ion-col>
+
+    </ion-row>
+
+    <ion-row>
+
+      <ion-col>
+        CON : {{actual.constitution}}
+        Mod: {{actual.con_mod}}
+      </ion-col>
+
+      <ion-col>
+        INT : {{actual.inteligence}}
+        Mod: {{actual.int_mod}}
+      </ion-col>
+
+    </ion-row>
+
+    <ion-row>
+
+      <ion-col>
+        WIS : {{actual.wisdom}}
+        Mod: {{actual.wis_mod}}
+      </ion-col>
+
+      <ion-col>
+        CHA : {{actual.charisma}}
+        Mod: {{actual.cha_mod}}
+      </ion-col>
+
+
+    </ion-row>
+
+  </ion-grid>
+
+ 
+
+</ion-content>
