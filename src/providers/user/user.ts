@@ -4,6 +4,7 @@ import { Injectable } from '@angular/core';
 import {Character} from '../../assets/classes/Character';
 import {Item} from '../../assets/classes/Item';
 import {Spell} from '../../assets/classes/Spell';
+import { Note} from '../../assets/classes/Note';
 
 /*
   Generated class for the UserProvider provider.
@@ -20,6 +21,7 @@ export class UserProvider {
   tempC:Character;
   tempI:Item;
   tempS:Spell;
+  tempN:Note
 
 
 
@@ -29,6 +31,7 @@ export class UserProvider {
     this.tempC = new Character();
     this.tempI = new Item();
     this.tempS = new Spell();
+    this.tempN = new Note();
   }
 
 }

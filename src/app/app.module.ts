@@ -17,6 +17,17 @@ import {CharDetailsPage} from '../pages/char-details/char-details';
 import {LoginPage} from '../pages/login/login'
 
 import { UserProvider } from '../providers/user/user';
+import { ItemListPage } from '../pages/item-list/item-list';
+import { CreateItemPage } from '../pages/create-item/create-item';
+import { SpellListPage } from '../pages/spell-list/spell-list';
+import { CreateSpellPage } from '../pages/create-spell/create-spell';
+import { CreateNotePage } from '../pages/create-note/create-note';
+import { NoteDetailsPage } from '../pages/note-details/note-details';
+import { NoteListPage } from '../pages/note-list/note-list';
+
+//inclui os imports e declara eles no NGModule para que a ionic reconhe;a nas suas fun;oes
+//eh aqui que tu vai incluir algum provider externo, ou pagina nova.
+
 
 @NgModule({
   declarations: [
@@ -25,7 +36,14 @@ import { UserProvider } from '../providers/user/user';
     CharListPage,
     CreateCharPage,
     CharDetailsPage,
-    LoginPage
+    LoginPage,
+    ItemListPage,
+    CreateItemPage,
+    SpellListPage,
+    CreateSpellPage,
+    CreateNotePage,
+    NoteDetailsPage,
+    NoteListPage
   ],
   imports: [
     BrowserModule,
@@ -38,7 +56,14 @@ import { UserProvider } from '../providers/user/user';
     CharListPage,
     CreateCharPage,
     CharDetailsPage,
-    LoginPage
+    LoginPage,
+    ItemListPage,
+    CreateItemPage,
+    SpellListPage,
+    CreateSpellPage,
+    CreateNotePage,
+    NoteDetailsPage,
+    NoteListPage
   ],
   providers: [
     StatusBar,

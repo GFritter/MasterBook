@@ -5,6 +5,8 @@ export class attack
 
 }
 
+//Classe do personagem, basicamente uma estrutura de dados pra conter as informa;'oes necessarias,
+//quase nenhuma fun;'ao
 
 export class Character
 {

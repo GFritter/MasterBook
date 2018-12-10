@@ -23,6 +23,7 @@ export class CreateCharPage {
   class:string;
   level:string;
 
+  showFooter:boolean=true;
 
 
   constructor(public navCtrl: NavController, public navParams: NavParams,private dbProvider:DatabaseProvider) {
@@ -38,8 +39,15 @@ export class CreateCharPage {
    
     this.dbProvider.insertCharacter(this.temp);
     this.temp=new Character();
+    this.navCtrl.pop();
   }
 
-
-
+  changeFooter()
+  {
+    this.showFooter = !this.showFooter;
+    console.log("troquei o footer "+this.showFooter);
+  }
 }
+
+
+

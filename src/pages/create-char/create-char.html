@@ -16,37 +16,37 @@
 <ion-content padding>
 
   Name
-  <ion-input [(ngModel)] = 'temp.name'>
+  <ion-input (ionFocus)="changeFooter()" (ionBlur)="changeFooter()"  [(ngModel)] = 'temp.name'>
     
   </ion-input>
 
   <br>
   Class
-  <ion-input [(ngModel)] = 'temp.class' >
+  <ion-input (ionFocus)="changeFooter()" (ionBlur)="changeFooter()"   [(ngModel)] = 'temp.class' >
       
    </ion-input>
 
    <br>
 
    Race
-   <ion-input [(ngModel)] = 'temp.race'>
+   <ion-input (ionFocus)="changeFooter()" (ionBlur)="changeFooter()"  [(ngModel)] = 'temp.race'>
      
    </ion-input>
 
     <br>
     Level
-  <ion-input [(ngModel)] = 'temp.level'>
+  <ion-input (ionFocus)="changeFooter()" (ionBlur)="changeFooter()"  [(ngModel)] = 'temp.level'>
     
   </ion-input>
 
   <br>
 
   Alignment
-  <ion-input [(ngModel)] = "temp.alignment">
+  <ion-input (ionFocus)="changeFooter()" (ionBlur)="changeFooter()"   [(ngModel)] = "temp.alignment">
 
   </ion-input>
 
-  <ion-grid>
+  <ion-grid (ionFocus)="changeFooter()" (ionBlur)="changeFooter()"  >
     <ion-row>
     <ion-col>STR
       <input type="number" [(ngModel)] = 'temp.strength'>
@@ -74,16 +74,16 @@
   </ion-grid>
 
   HP
-  <input type="number" [(ngModel)] = 'temp.hp_max'>
+  <input (ionFocus)="changeFooter()" (ionBlur)="changeFooter()"   type="number" [(ngModel)] = 'temp.hp_max'>
 
   Armor Class
-  <input type="number" [(ngModel)] = 'temp.ac'>
+  <input (ionFocus)="changeFooter()" (ionBlur)="changeFooter()"   type="number" [(ngModel)] = 'temp.ac'>
 
   Experience
-  <input type="number" [(ngModel)] = 'temp.experience'>
+  <input (ionFocus)="changeFooter()" (ionBlur)="changeFooter()"   type="number" [(ngModel)] = 'temp.experience'>
 
   Background
-  <ion-input item-height="30em" [(ngModel)] = 'temp.background'>
+  <ion-input (ionFocus)="changeFooter()" (ionBlur)="changeFooter()"   item-height="30em" [(ngModel)] = 'temp.background'>
     
   </ion-input>
 
@@ -91,7 +91,7 @@
   
 </ion-content>
 
-<ion-footer>
+<ion-footer *ngIf ="showFooter">
   <ion-toolbar>
     <button ion-button (click)='addCharacter()'> Adicionar </button>
   </ion-toolbar>
