@@ -20,10 +20,16 @@ export class LorePage {
   actual:Character
 
   constructor(public navCtrl: NavController, public navParams: NavParams, private userProvider:UserProvider) {
+  this.actual=new Character
   }
 
   ionViewDidLoad() {
     console.log('ionViewDidLoad LorePage');
+  
+  }
+
+  ionViewWillEnter()
+  {
     this.actual = this.userProvider.tempC;
   }
 

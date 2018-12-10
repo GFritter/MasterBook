@@ -1,5 +1,5 @@
 <!--
-  Generated template for the CharListPage page.
+  Generated template for the NoteListPage page.
 
   See http://ionicframework.com/docs/components/#navigation for more info on
   Ionic pages and navigation.
@@ -7,7 +7,7 @@
 <ion-header>
 
   <ion-navbar>
-    <ion-title>Character List</ion-title>
+    <ion-title>note-list</ion-title>
   </ion-navbar>
 
 </ion-header>
@@ -15,30 +15,29 @@
 
 <ion-content padding>
 
-  <ion-list  *ngFor='let c of characters'>
+  <ion-list  *ngFor='let n of notes'>
     <ion-item-sliding>
     <ion-item>
 
-      <h2>{{c.name}} {{c.id}}</h2>
+      <h2>{{n.title}} {{n.id}}</h2>
       <br>
-      <h4>{{c.class}}</h4>      <h4>{{c.level}}</h4>   
-
+      <p>{{n.description}}</p>
 
     </ion-item>
 
     <ion-item-options side='left' >
-      <button ion-button (click) = 'delete(c.id)'  >
+      <button ion-button (click) = "delete(n.id)"  >
         <ion-icon name='delete' ></ion-icon>
         Delete
       </button>
     </ion-item-options>
 
     <ion-item-options side='right' >
-        <button  >
-          <ion-icon name='Editar' ></ion-icon>
+        <button ion-button (click) = "goToCreateNote(n)"  >
+          <ion-icon name='Editar'></ion-icon>
           Edit
         </button>
-        <button ion-button (click) = 'goToDetails(c.id)'>
+        <button ion-button (click) = "goToDetails(n.id)" >
           <ion-icon name='details' > </ion-icon>
           Details
         </button>
@@ -46,14 +45,8 @@
 
   </ion-item-sliding>
   </ion-list>
-
 </ion-content>
 
 <ion-footer>
-  <ion-toolbar>
-    <button ion-button (click) = 'goToCreate()'>
-      Adicionar Personagem
-    </button>
-  </ion-toolbar>
+  <button ion-button (click)="goToCreateNote()">New Note</button>
 </ion-footer>
-

@@ -16,13 +16,16 @@
   <ion-content>
     <ion-list>
       <ion-item>
-       <button ion-input (click) = "goToCharList()">Characters List</button>
+       <button ion-button (click) = "goToCharList()">Characters List</button>
       </ion-item>
       <ion-item>
-        <button>Items List</button>
+        <button ion-button (click)="goToItemList()">Items List</button>
       </ion-item>
       <ion-item>
-        <button>Magic List</button>
+        <button ion-button (click)="goToSpellList()">Magic List</button>
+      </ion-item>
+      <ion-item>
+        <button ion-button (click)="goToNoteList()">Note List</button>
       </ion-item>
            
      

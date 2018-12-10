@@ -25,6 +25,7 @@ export class CharListPage {
   characters :any [] = [];
   temp:Character;
 
+  showFooter:boolean = true;
 
   constructor(public navCtrl: NavController, public navParams: NavParams, public toast:ToastController, private dbProvider:DatabaseProvider,private userProvider:UserProvider) {
 
@@ -34,10 +35,15 @@ export class CharListPage {
 
   ionViewDidLoad() {
     console.log('ionViewDidLoad CharListPage');
-    this.getAllCharacters();
+   // this.getAllCharacters();
   }
 
   ionViewDidEnter()
+  {
+    //this.getAllCharacters();
+  }
+
+  ionViewWillEnter()
   {
     this.getAllCharacters();
   }
@@ -81,4 +87,5 @@ export class CharListPage {
   this.navCtrl.push(CharDetailsPage);
   
   }
+
 }
