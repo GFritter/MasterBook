@@ -1,3 +1,6 @@
 page-create-spell {
-
+    ion-input{
+        background-color: map-get($colors, input_space_color);
+        
+    }
 }

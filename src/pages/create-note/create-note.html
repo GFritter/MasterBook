@@ -6,8 +6,8 @@
 -->
 <ion-header>
 
-  <ion-navbar>
-    <ion-title>create-note</ion-title>
+  <ion-navbar color="background_navbar_color">
+    <ion-title>Create a Note</ion-title>
   </ion-navbar>
 
 </ion-header>
@@ -15,14 +15,17 @@
 
 <ion-content padding>
 
-  <ion-input [(ngModel)]="temp.title" placeholder="Title" (ionFocus)="setFooter(false)" (ionBlur)="setFooter(true)">
+  <ion-input [(ngModel)]="temp.title" placeholder="Title" (ionFocus)="setFooter(false)" (ionBlur)="setFooter(true)" color="input_space_color">
 
   </ion-input>
-  <ion-input [(ngModel)]="temp.description" placeholder="A brief description" (ionFocus)="setFooter(false)" (ionBlur)="setFooter(true)"></ion-input>
 
   <br>
 
-  <ion-input [(ngModel)]="temp.content" placeholder = "the content of your note" (ionFocus)="setFooter(false)" (ionBlur)="setFooter(true)"></ion-input>
+  <ion-input [(ngModel)]="temp.description" placeholder="A brief description" class="placeholder-text" (ionFocus)="setFooter(false)" (ionBlur)="setFooter(true)"></ion-input>
+
+  <br>
+
+  <ion-input [(ngModel)]="temp.content" placeholder = "the content of your note" (ionFocus)="setFooter(false)" (ionBlur)="setFooter(true)" color="input_space_color"></ion-input>
 
 </ion-content>
 

@@ -1,20 +1,20 @@
 <ion-header>
-  <ion-navbar>
-    <ion-title>
+  <ion-navbar color="background_navbar_color">
+    <ion-title >
       Master {{username}}
     </ion-title>
   </ion-navbar>
 </ion-header>
 
 <ion-content padding>
-<h1>WELCOME TO THE MASTERBOOK</h1>
+<h1 >WELCOME TO THE MASTERBOOK</h1>
 </ion-content>
 
 
 <ion-menu [content]="mycontent">
 
   <ion-content>
-    <ion-list>
+    <ion-list no-lines>
       <ion-item>
        <button ion-button (click) = "goToCharList()">Characters List</button>
       </ion-item>

@@ -1,3 +1,20 @@
 page-create-note {
+    ion-input{
+        
+        background-color: map-get($colors, input_space_color);
+        .text-input::-moz-placeholder {
+            color: #3a281e;
+        }
+        
+        .text-input:-ms-input-placeholder {
+            color: #3a281e;
+        }
+        
+        .text-input::-webkit-input-placeholder {
+            color: #3a281e;
+        }
 
+    }
+
+    
 }

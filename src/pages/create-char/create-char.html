@@ -6,7 +6,7 @@
 -->
 <ion-header>
 
-  <ion-navbar>
+  <ion-navbar color="background_navbar_color">
     <ion-title>Create a new Character</ion-title>
   </ion-navbar>
 
@@ -16,45 +16,46 @@
 <ion-content padding>
 
   Name
-  <ion-input (ionFocus)="changeFooter()" (ionBlur)="changeFooter()"  [(ngModel)] = 'temp.name'>
+  <ion-input color="input_space_color" (ionFocus)="changeFooter()" (ionBlur)="changeFooter()"  [(ngModel)] = 'temp.name'>
     
   </ion-input>
 
   <br>
   Class
-  <ion-input (ionFocus)="changeFooter()" (ionBlur)="changeFooter()"   [(ngModel)] = 'temp.class' >
+  <ion-input (ionFocus)="changeFooter()" (ionBlur)="changeFooter()"   [(ngModel)] = 'temp.class' color="input_space_color">
       
    </ion-input>
 
    <br>
 
    Race
-   <ion-input (ionFocus)="changeFooter()" (ionBlur)="changeFooter()"  [(ngModel)] = 'temp.race'>
+   <ion-input (ionFocus)="changeFooter()" (ionBlur)="changeFooter()"  [(ngModel)] = 'temp.race' color="input_space_color">
      
    </ion-input>
 
     <br>
     Level
-  <ion-input (ionFocus)="changeFooter()" (ionBlur)="changeFooter()"  [(ngModel)] = 'temp.level'>
+  <ion-input (ionFocus)="changeFooter()" (ionBlur)="changeFooter()"  [(ngModel)] = 'temp.level' color="input_space_color">
     
   </ion-input>
 
   <br>
 
   Alignment
-  <ion-input (ionFocus)="changeFooter()" (ionBlur)="changeFooter()"   [(ngModel)] = "temp.alignment">
+  <ion-input (ionFocus)="changeFooter()" (ionBlur)="changeFooter()"   [(ngModel)] = "temp.alignment" color="input_space_color">
 
   </ion-input>
 
   <ion-grid (ionFocus)="changeFooter()" (ionBlur)="changeFooter()"  >
     <ion-row>
-    <ion-col>STR
-      <input type="number" [(ngModel)] = 'temp.strength'>
-    </ion-col> 
-    <ion-col>DEX 
-      <input type="number"  [(ngModel)] = 'temp.dexterity'>
-    </ion-col> 
-  </ion-row>
+      <ion-col>STR
+        <input type="number" [(ngModel)] = 'temp.strength'>
+      </ion-col> 
+      <ion-col>DEX 
+        <input type="number"  [(ngModel)] = 'temp.dexterity'>
+      </ion-col> 
+    </ion-row>
+    <!---->
     <ion-row>  
       <ion-col>CON
         <input type="number"  [(ngModel)] = 'temp.constitution'>
@@ -63,6 +64,7 @@
         <input type="number"  [(ngModel)] = 'temp.inteligence'>
       </ion-col>
     </ion-row>
+    <!---->
     <ion-row> 
       <ion-col>WIS
         <input type="number"  [(ngModel)] = 'temp.wisdom'>
@@ -70,7 +72,7 @@
       <ion-col>CHA 
         <input type="number"  [(ngModel)] = 'temp.charisma'>
       </ion-col>
-      </ion-row>
+    </ion-row>
   </ion-grid>
 
   HP
@@ -82,6 +84,9 @@
   Experience
   <input (ionFocus)="changeFooter()" (ionBlur)="changeFooter()"   type="number" [(ngModel)] = 'temp.experience'>
 
+  <br>
+  <br>
+  <br>
   Background
   <ion-input (ionFocus)="changeFooter()" (ionBlur)="changeFooter()"   item-height="30em" [(ngModel)] = 'temp.background'>
     

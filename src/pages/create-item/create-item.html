@@ -6,8 +6,8 @@
 -->
 <ion-header>
 
-  <ion-navbar>
-    <ion-title>create-item</ion-title>
+  <ion-navbar color="background_navbar_color">
+    <ion-title>Create an Item</ion-title>
   </ion-navbar>
 
 </ion-header>
@@ -16,29 +16,29 @@
 <ion-content padding>
 
   Name:
-  <ion-input [(ngModel)] = "temp.name" (ionFocus)="setFooter(false)" (ionBlur)="setFooter(true)">
+  <ion-input [(ngModel)] = "temp.name" (ionFocus)="setFooter(false)" (ionBlur)="setFooter(true)" color="input_space_color">
   </ion-input>
 
   Function:
-  <ion-input [(ngModel)] = "temp.function" (ionFocus)="setFooter(false)" (ionBlur)="setFooter(true)">
+  <ion-input [(ngModel)] = "temp.function" (ionFocus)="setFooter(false)" (ionBlur)="setFooter(true)" color="input_space_color">
   </ion-input>
 
   Description:
-  <ion-input [(ngModel)] = "temp.description" (ionFocus)="setFooter(false)" (ionBlur)="setFooter(true)">
+  <ion-input [(ngModel)] = "temp.description" (ionFocus)="setFooter(false)" (ionBlur)="setFooter(true)" color="input_space_color">
   </ion-input>
 
   Type:
-  <ion-input [(ngModel)] = "temp.type"(ionFocus)="setFooter(false)" (ionBlur)="setFooter(true)">
+  <ion-input [(ngModel)] = "temp.type"(ionFocus)="setFooter(false)" (ionBlur)="setFooter(true)" color="input_space_color">
   </ion-input>
 
   Value:           
-  <ion-input [(ngModel)] ="temp.value" item-width="40%" (ionFocus)="setFooter(false)" (ionBlur)="setFooter(true)"></ion-input>  
+  <ion-input [(ngModel)] ="temp.value" item-width="40%" (ionFocus)="setFooter(false)" (ionBlur)="setFooter(true)" color="input_space_color"></ion-input>  
   
   Weight:
-  <ion-input [(ngModel)] = "temp.weight" item-width="40%" (ionFocus)="setFooter(false)" (ionBlur)="setFooter(true)"></ion-input>
+  <ion-input [(ngModel)] = "temp.weight" item-width="40%" (ionFocus)="setFooter(false)" (ionBlur)="setFooter(true)" color="input_space_color"></ion-input>
 
   Properties:
-  <ion-input [(ngModel)] = "temp.properties" (ionFocus)="setFooter(false)" (ionBlur)="setFooter(true)">
+  <ion-input [(ngModel)] = "temp.properties" (ionFocus)="setFooter(false)" (ionBlur)="setFooter(true)" color="input_space_color">
   </ion-input>
 
 
