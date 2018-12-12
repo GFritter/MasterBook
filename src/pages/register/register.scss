@@ -1,3 +1,11 @@
 page-register {
+    
+    ion-title{
+        color: map-get($colors, text_title_color);
+    }
 
+    ion-input{
+        background-color: map-get($colors, input_space_color);
+        
+    }   
 }
