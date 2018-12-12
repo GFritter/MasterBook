@@ -21,7 +21,7 @@ export class NoteListPage {
 
   notes:any[];
 
-  constructor(public navCtrl: NavController, public navParams: NavParams,public dbProvider:DatabaseProvider,public user:UserProvider) {
+  constructor(public navCtrl: NavController, public navParams: NavParams,public dbProvider:DatabaseProvider,public userProvider:UserProvider) {
  
 
   }
@@ -38,7 +38,7 @@ export class NoteListPage {
   getAllNotes()
   {
     
-    this.dbProvider.getAllNotes()
+    this.dbProvider.getAllNotes(null,this.userProvider.userId)
     .then((data:any[])=>
     {
       this.notes=data;
@@ -54,9 +54,9 @@ export class NoteListPage {
 
   goToDetails(id:number)
   {
-    this.dbProvider.getNote(id).then((data:any)=>
+    this.dbProvider.getNote(id,this.userProvider.userId).then((data:any)=>
   {
-    this.user.tempN = data;
+    this.userProvider.tempN = data;
   })
   ;
     this.navCtrl.push(NoteDetailsPage);
@@ -65,7 +65,7 @@ export class NoteListPage {
   delete(id:number)
   {
 
-    this.dbProvider.removeNotes(id);
+    this.dbProvider.removeNotes(id,this.userProvider.userId);
     this.getAllNotes();
   
   }

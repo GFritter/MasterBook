@@ -50,7 +50,7 @@ export class CharListPage {
 
   getAllCharacters()
   {
-    this.dbProvider.getAllCharacters()
+    this.dbProvider.getAllCharacters(null,this.userProvider.userId)
     .then((result:any[]) =>
     {
       this.characters =result;
@@ -60,7 +60,7 @@ export class CharListPage {
 
   delete(id:number)
   {
-    this.dbProvider.removeCharacter(id)
+    this.dbProvider.removeCharacter(id,this.userProvider.userId)
     this.getAllCharacters();
   }
 
@@ -72,7 +72,7 @@ export class CharListPage {
 
   goToDetails(id:number)
   {
-    this.dbProvider.getCharacter(id)
+    this.dbProvider.getCharacter(id,this.userProvider.userId)
     .then((result:any) =>
   {
     this.temp = result;

@@ -21,7 +21,7 @@ export class SpellListPage {
 
   spells:any[] = [];
 
-  constructor(public navCtrl: NavController, public navParams: NavParams,public dbProvider:DatabaseProvider,public user:UserProvider) {
+  constructor(public navCtrl: NavController, public navParams: NavParams,public dbProvider:DatabaseProvider,public userProvider:UserProvider) {
   
 
 
@@ -39,7 +39,7 @@ export class SpellListPage {
 
   getAllSpells()
   {
-    this.dbProvider.getAllSpells()
+    this.dbProvider.getAllSpells(null,this.userProvider.userId)
     .then((data:any[]) =>
   {
     this.spells = data;
@@ -54,16 +54,16 @@ export class SpellListPage {
 
   delete(id:number)
   {
-    this.dbProvider.removeSpell(id);
+    this.dbProvider.removeSpell(id,this.userProvider.userId);
     this.getAllSpells();
   }
 
   goToDetails(id:number)
   {
-    this.dbProvider.getSpell(id).
+    this.dbProvider.getSpell(id,this.userProvider.userId).
     then((data:any)=>
   {
-    this.user.tempS = data;
+    this.userProvider.tempS = data;
   });
 
   this.navCtrl.push(SpellDetailsPage);

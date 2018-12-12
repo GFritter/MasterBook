@@ -2,6 +2,7 @@ import { Component } from '@angular/core';
 import { IonicPage, NavController, NavParams } from 'ionic-angular';
 import { DatabaseProvider } from '../../providers/database/database';
 import { Character } from '../../assets/classes/Character';
+import { UserProvider } from '../../providers/user/user';
 
 /**
  * Generated class for the CreateCharPage page.
@@ -26,7 +27,7 @@ export class CreateCharPage {
   showFooter:boolean=true;
 
 
-  constructor(public navCtrl: NavController, public navParams: NavParams,private dbProvider:DatabaseProvider) {
+  constructor(public navCtrl: NavController, public navParams: NavParams,private dbProvider:DatabaseProvider,public userProvider:UserProvider) {
     this.temp = new Character();
   }
 
@@ -37,7 +38,7 @@ export class CreateCharPage {
   addCharacter()
   {
    
-    this.dbProvider.insertCharacter(this.temp);
+    this.dbProvider.insertCharacter(this.temp,this.userProvider.userId);
     this.temp=new Character();
     this.navCtrl.pop();
   }

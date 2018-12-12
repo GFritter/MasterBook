@@ -7,6 +7,7 @@ import { Item } from '../../assets/classes/Item';
 import {Spell} from '../../assets/classes/Spell';
 import { Monster } from '../../assets/classes/Monster';
 import { Note } from '../../assets/classes/Note';
+import { unescapeIdentifier } from '../../../node_modules/@angular/compiler';
 
 /*
   Generated class for the DatabaseProvider provider.
@@ -47,11 +48,11 @@ export class DatabaseProvider {
   {
     db.sqlBatch([
     
-      ['CREATE TABLE IF NOT EXISTS characters(id INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, name TEXT, class TEXT,race TEXT, level TEXT, alignment TEXT, experience INTEGER, hp INTEGER,hp_max INTEGER,ac NUMBER, strength NUMBER, dexterity NUMBER, constitution NUMBER, inteligence NUMBER, wisdom NUMBER, charisma NUMBER,lore TEXT, background TEXT, visual TEXT, img_url TEXT,inventory_id NUMBER, grimoire_id NUMBER)'],
-      ['CREATE TABLE IF NOT EXISTS spells(id INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, name TEXT,type TEXT, level NUMBER, casting TEXT, range TEXT, components TEXT, duration TEXT, description TEXT )'],
-      ['CREATE TABLE IF NOT EXISTS items(id INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, name TEXT, value TEXT, function TEXT, description TEXT, weight TEXT, type TEXT, properties TEXT)'],
-      ['CREATE TABLE IF NOT EXISTS monsters(id INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, name TEXT, size TEXT, type TEXT, alignment TEXT, cr INTEGER, legendary BIT, ac INTEGER, hp INTEGER, hp_max INTEGER, strength INTEGER, dexterity INTEGER, constitution INTEGER, wisdom INTEGER, inteligence INTEGER, charisma INTEGER, skills TEXT, senses TEXT, languages TEXT, perks TEXT, actions TEXT, legendaryActions TEXT, biome TEXT)'],
-      ['CREATE TABLE IF NOT EXISTS notes(id INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, title TEXT, description TEXT, content TEXT)']
+      ['CREATE TABLE IF NOT EXISTS characters(id INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, name TEXT, class TEXT,race TEXT, level TEXT, alignment TEXT, experience INTEGER, hp INTEGER,hp_max INTEGER,ac NUMBER, strength NUMBER, dexterity NUMBER, constitution NUMBER, inteligence NUMBER, wisdom NUMBER, charisma NUMBER,lore TEXT, background TEXT, visual TEXT, img_url TEXT,inventory_id NUMBER, grimoire_id NUMBER,user_id TEXT)'],
+      ['CREATE TABLE IF NOT EXISTS spells(id INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, name TEXT,type TEXT, level NUMBER, casting TEXT, range TEXT, components TEXT, duration TEXT, description TEXT,user_id TEXT )'],
+      ['CREATE TABLE IF NOT EXISTS items(id INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, name TEXT, value TEXT, function TEXT, description TEXT, weight TEXT, type TEXT, properties TEXT,user_id TEXT)'],
+      ['CREATE TABLE IF NOT EXISTS monsters(id INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, name TEXT, size TEXT, type TEXT, alignment TEXT, cr INTEGER, legendary BIT, ac INTEGER, hp INTEGER, hp_max INTEGER, strength INTEGER, dexterity INTEGER, constitution INTEGER, wisdom INTEGER, inteligence INTEGER, charisma INTEGER, skills TEXT, senses TEXT, languages TEXT, perks TEXT, actions TEXT, legendaryActions TEXT, biome TEXT,user_id TEXT)'],
+      ['CREATE TABLE IF NOT EXISTS notes(id INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, title TEXT, description TEXT, content TEXT,user_id TEXT)']
     ]
     )
     .then(() =>console.log('tabela criada'))
@@ -77,13 +78,13 @@ export class DatabaseProvider {
 // .catch((e) => console.error(e));
 // }
 
-  public insertCharacter(char:Character)
+  public insertCharacter(char:Character,uid:string)
   {
     return this.getDB()
     .then((db:SQLiteObject) =>
   {
-    let sql = 'insert into characters (name,class,race,level,alignment,experience,hp,hp_max,ac,strength,dexterity,constitution,inteligence,wisdom,charisma,lore,background,visual,img_url,inventory_id,grimoire_id) values (?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)'
-    let data= [char.name,char.class,char.race,char.level,char.alignment,char.experience,char.hp,char.hp_max,char.ac,char.strength,char.dexterity,char.constitution,char.inteligence,char.wisdom,char.charisma,char.lore,char.background,char.visual,char.img_url,char.inventory_id,char.grimoire_id];
+    let sql = 'insert into characters (name,class,race,level,alignment,experience,hp,hp_max,ac,strength,dexterity,constitution,inteligence,wisdom,charisma,lore,background,visual,img_url,inventory_id,grimoire_id,user_id) values (?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)'
+    let data= [char.name,char.class,char.race,char.level,char.alignment,char.experience,char.hp,char.hp_max,char.ac,char.strength,char.dexterity,char.constitution,char.inteligence,char.wisdom,char.charisma,char.lore,char.background,char.visual,char.img_url,char.inventory_id,char.grimoire_id,uid];
 
     return db.executeSql(sql,data)
     .catch((e) => console.error(e));
@@ -92,13 +93,13 @@ export class DatabaseProvider {
   .catch((e)=> console.error(e));
   }
 
-  public insertItem(item:Item)
+  public insertItem(item:Item,uid:string)
   {
     return this.getDB()
     .then((db:SQLiteObject) =>
   {
-    let sql = 'insert into items (name,value,function,description,weight,type,properties) values (?,?,?,?,?,?,?)';
-    let data = [item.name,item.value,item.function,item.description,item.weight,item.type,item.properties];
+    let sql = 'insert into items (name,value,function,description,weight,type,properties,user_id) values (?,?,?,?,?,?,?,?)';
+    let data = [item.name,item.value,item.function,item.description,item.weight,item.type,item.properties,uid];
 
     return db.executeSql(sql,data)
     .catch((e) => console.error(e));
@@ -106,13 +107,13 @@ export class DatabaseProvider {
   .catch((e) => console.error(e));
   }
 
-  public insertSpell(spell:Spell)
+  public insertSpell(spell:Spell,uid:string)
   {
     return this.getDB()
     .then((db:SQLiteObject) =>
   {
-    let sql = 'insert into spells (name,type,level,casting_time,range,components,duration,description) values (?,?,?,?,?,?,?,?)';
-    let data = [spell.name,spell.type,spell.level,spell.casting_time,spell.range,spell.components,spell.duration,spell.description];
+    let sql = 'insert into spells (name,type,level,casting,range,components,duration,description,user_id) values (?,?,?,?,?,?,?,?,?)';
+    let data = [spell.name,spell.type,spell.level,spell.casting_time,spell.range,spell.components,spell.duration,spell.description,uid];
 
     return db.executeSql(sql,data)
     .catch((e) => console.error(e));
@@ -121,13 +122,13 @@ export class DatabaseProvider {
   }
 
   
-  public insertMonster(monst:Monster)
+  public insertMonster(monst:Monster,uid)
   {
     return this.getDB()
     .then((db:SQLiteObject) =>
   {
-    let sql = 'insert into monsters (name,size,type,alignment,cr,legendary,ac,hp,hp_max,strength,dexterity,constitution,wisdom,inteligence,charisma,skills,senses,languages,perks,actions,legendaryActions,biome) values (?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)'
-    let data= [monst.name,monst.size,monst.type,monst.alignment,monst.cr,,monst.legendary,monst.ac,monst.hp,monst.hpMax,monst.strength,monst.dexterity,monst.constitution,monst.wisdom,monst.inteligence,monst.charisma,monst.skills,monst.senses,monst.languages,monst.perks,monst.actions,monst.legendaryActions,monst.biome];
+    let sql = 'insert into monsters (name,size,type,alignment,cr,legendary,ac,hp,hp_max,strength,dexterity,constitution,wisdom,inteligence,charisma,skills,senses,languages,perks,actions,legendaryActions,biome,user_id) values (?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)'
+    let data= [monst.name,monst.size,monst.type,monst.alignment,monst.cr,,monst.legendary,monst.ac,monst.hp,monst.hpMax,monst.strength,monst.dexterity,monst.constitution,monst.wisdom,monst.inteligence,monst.charisma,monst.skills,monst.senses,monst.languages,monst.perks,monst.actions,monst.legendaryActions,monst.biome,uid];
 
     return db.executeSql(sql,data)
     .catch((e) => console.error(e));
@@ -137,13 +138,13 @@ export class DatabaseProvider {
   }
 
 
-  public insertNote(note:Note)
+  public insertNote(note:Note,uid:string)
 {
   return this.getDB()
   .then((db:SQLiteObject) =>
 {
-  let sql = 'insert into notes (title,description,content) values (?,?,?)';
-  let data = [note.title,note.description,note.content];
+  let sql = 'insert into notes (title,description,content,user_id) values (?,?,?,?)';
+  let data = [note.title,note.description,note.content,uid];
 
   return db.executeSql(sql,data)
   .catch((e) => console.error(e));
@@ -168,13 +169,13 @@ export class DatabaseProvider {
 // .catch((e) => console.error(e));
 // }
 
-public updateCharacter(char:Character)
+public updateCharacter(char:Character,uid:string)
   {
     return this.getDB()
     .then((db:SQLiteObject) =>
   {
-    let sql = 'update characters set name=?,class=?,race =?,level=?,alignment=?,experience=?,hp=?,hp_max=?,ac=?,strength=?,dexterity=?,constitution=?,inteligence=?,wisdom=?,charisma=?,lore=?,background=?,visual=?,img_url=?,inventory_id=?,grimoire_id=? where id=?'
-    let data= [char.name,char.class,char.race,char.level,char.alignment,char.experience,char.hp,char.hp_max,char.ac,char.strength,char.dexterity,char.constitution,char.inteligence,char.wisdom,char.charisma,char.lore,char.background,char.visual,char.img_url,char.inventory_id,char.grimoire_id,char.id];
+    let sql = 'update characters set name=?,class=?,race =?,level=?,alignment=?,experience=?,hp=?,hp_max=?,ac=?,strength=?,dexterity=?,constitution=?,inteligence=?,wisdom=?,charisma=?,lore=?,background=?,visual=?,img_url=?,inventory_id=?,grimoire_id=? where id=? and uid=?'
+    let data= [char.name,char.class,char.race,char.level,char.alignment,char.experience,char.hp,char.hp_max,char.ac,char.strength,char.dexterity,char.constitution,char.inteligence,char.wisdom,char.charisma,char.lore,char.background,char.visual,char.img_url,char.inventory_id,char.grimoire_id,char.id,uid];
 
     return db.executeSql(sql,data)
     .catch((e) => console.error(e));
@@ -184,13 +185,13 @@ public updateCharacter(char:Character)
 
   }
 
-public updateItem(item:Item)
+public updateItem(item:Item,uid:string)
 {
   return this.getDB()
   .then((db:SQLiteObject) =>
 {
-  let sql = 'update items set name =?, value =?, function=?, description =?, weight=?, type=?, properties = ? where id=?';
-  let data = [item.name,item.value,item.function,item.description,item.weight,item.type,item.properties,item.id];
+  let sql = 'update items set name =?, value =?, function=?, description =?, weight=?, type=?, properties = ? where id=? and user_id=?';
+  let data = [item.name,item.value,item.function,item.description,item.weight,item.type,item.properties,item.id,uid];
 
   return db.executeSql(sql,data)
   .catch((e) => console.error(e));
@@ -198,13 +199,13 @@ public updateItem(item:Item)
 .catch((e) => console.error(e));
 }
 
-public updateSpell(spell:Spell)
+public updateSpell(spell:Spell,uid:string)
   {
     return this.getDB()
     .then((db:SQLiteObject) =>
   {
-    let sql = 'update spells set name=?,type=?,level=?,casting_time=?,range=?,components=?,duration=?,description=? where id=?) ';
-    let data = [spell.name,spell.type,spell.level,spell.casting_time,spell.range,spell.components,spell.duration,spell.description,spell.id];
+    let sql = 'update spells set name=?,type=?,level=?,casting=?,range=?,components=?,duration=?,description=? where id=? and user_id=?) ';
+    let data = [spell.name,spell.type,spell.level,spell.casting_time,spell.range,spell.components,spell.duration,spell.description,spell.id,unescapeIdentifier];
 
     return db.executeSql(sql,data)
     .catch((e) => console.error(e));
@@ -213,13 +214,13 @@ public updateSpell(spell:Spell)
   }
 
 
-  public updateNote(note:Note)
+  public updateNote(note:Note,uid)
 {
   return this.getDB()
   .then((db:SQLiteObject) =>
 {
-  let sql = 'update notes set title =?, description=?,content=? where id=?';
-  let data = [note.title,note.description,note.content,note.id];
+  let sql = 'update notes set title =?, description=?,content=? where id=? and user_id=?';
+  let data = [note.title,note.description,note.content,note.id,uid];
 
   return db.executeSql(sql,data)
   .catch((e) => console.error(e));
@@ -243,13 +244,13 @@ public updateSpell(spell:Spell)
 // .catch((e) => console.error(e));
 // }
 
-public removeCharacter(id:number)
+public removeCharacter(id:number,uid:string)
 {
   return this.getDB()
   .then((db:SQLiteObject) =>
 {
-  let sql = 'delete from characters where id=?';
-  let data = [id];
+  let sql = 'delete from characters where id=? and user_id=?';
+  let data = [id,uid];
 
   return db.executeSql(sql,data)
   .catch((e) => console.error(e));
@@ -257,13 +258,13 @@ public removeCharacter(id:number)
 .catch((e) => console.error(e));
 }
 
-public removeItem(id:number)
+public removeItem(id:number,uid:string)
 {
   return this.getDB()
   .then((db:SQLiteObject) =>
 {
-  let sql = 'delete from items where id=?';
-  let data = [id];
+  let sql = 'delete from items where id=? and user_id=?';
+  let data = [id,uid];
 
   return db.executeSql(sql,data)
   .catch((e) => console.error(e));
@@ -271,28 +272,13 @@ public removeItem(id:number)
 .catch((e) => console.error(e));
 }
 
-public removeSpell(id:number)
+public removeSpell(id:number,uid:string)
 {
   return this.getDB()
   .then((db:SQLiteObject) =>
 {
-  let sql = 'delete from spells where id=?';
-  let data = [id];
-
-  return db.executeSql(sql,data)
-  .catch((e) => console.error(e));
-})
-.catch((e) => console.error(e));
-}
-
-
-public removeMonster(id:number)
-{
-  return this.getDB()
-  .then((db:SQLiteObject) =>
-{
-  let sql = 'delete from monsters where id=?';
-  let data = [id];
+  let sql = 'delete from spells where id=? and user_id=?';
+  let data = [id,uid];
 
   return db.executeSql(sql,data)
   .catch((e) => console.error(e));
@@ -301,13 +287,28 @@ public removeMonster(id:number)
 }
 
 
-public removeNotes(id:number)
+public removeMonster(id:number,uid:string)
 {
   return this.getDB()
   .then((db:SQLiteObject) =>
 {
-  let sql = 'delete from notes where id=?';
-  let data = [id];
+  let sql = 'delete from monsters where id=? and user_id=?';
+  let data = [id,uid];
+
+  return db.executeSql(sql,data)
+  .catch((e) => console.error(e));
+})
+.catch((e) => console.error(e));
+}
+
+
+public removeNotes(id:number,uid:string)
+{
+  return this.getDB()
+  .then((db:SQLiteObject) =>
+{
+  let sql = 'delete from notes where id=? and user_id=?';
+  let data = [id,uid];
 
   return db.executeSql(sql,data)
   .catch((e) => console.error(e));
@@ -343,13 +344,13 @@ public removeNotes(id:number)
 // .catch((e) => console.error(e));
 // }
 
-public getCharacter(id:number)
+public getCharacter(id:number,uid:string)
 {
   return this.getDB()
   .then((db:SQLiteObject) =>
 {
-  let sql = 'select * from characters where id=?';
-  let data = [id];
+  let sql = 'select * from characters where id=? and user_id=?';
+  let data = [id,uid];
 
   return db.executeSql(sql,data)
   .then((data:any) => 
@@ -370,13 +371,13 @@ public getCharacter(id:number)
 
 }
 
-public getItem(id:number)
+public getItem(id:number,uid:string)
 {
   return this.getDB()
   .then((db:SQLiteObject) =>
 {
-  let sql = 'select * from items where id=?';
-  let data = [id];
+  let sql = 'select * from items where id=? and user_id=?';
+  let data = [id,uid];
 
   return db.executeSql(sql,data)
   .then((data:any) => 
@@ -396,13 +397,13 @@ public getItem(id:number)
 .catch((e) => console.error(e));
 }
 
-public getSpell(id:number)
+public getSpell(id:number,uid:string)
 {
   return this.getDB()
   .then((db:SQLiteObject) =>
 {
-  let sql = 'select * from spells where id=?';
-  let data = [id];
+  let sql = 'select * from spells where id=? and user_id=?';
+  let data = [id,uid];
 
   return db.executeSql(sql,data)
   .then((data:any) => 
@@ -421,13 +422,13 @@ public getSpell(id:number)
 .catch((e) => console.error(e));
 }
 
-public getMonster(id:number)
+public getMonster(id:number,uid:string)
 {
   return this.getDB()
   .then((db:SQLiteObject) =>
 {
-  let sql = 'select * from monsters where id=?';
-  let data = [id];
+  let sql = 'select * from monsters where id=? and user_id=?';
+  let data = [id,uid];
 
   return db.executeSql(sql,data)
   .then((data:any) => 
@@ -447,13 +448,13 @@ public getMonster(id:number)
 .catch((e) => console.error(e));
 }
 
-public getNote(id:number)
+public getNote(id:number,uid:string)
 {
   return this.getDB()
   .then((db:SQLiteObject) =>
 {
-  let sql = 'select * from notes where id=?';
-  let data = [id];
+  let sql = 'select * from notes where id=? and user_id=?';
+  let data = [id,uid];
 
   return db.executeSql(sql,data)
   .then((data:any) => 
@@ -512,13 +513,13 @@ public getNote(id:number)
 // .catch((e) => console.error(e));
 // }
 
-public getAllCharacters(name:string = null)
+public getAllCharacters(name:string = null,uid:string)
 {
   return this.getDB()
   .then((db:SQLiteObject) =>
 {
-  let sql = 'select * from characters';
-  let data:any = [];
+  let sql = 'select * from characters where  user_id=?';
+  let data:any = [uid];
 
   if(name)
   {
@@ -550,13 +551,13 @@ public getAllCharacters(name:string = null)
 .catch((e) => console.error(e));
 }
 
-public getAllItems(name:string = null)
+public getAllItems(name:string = null,uid:string)
 {
   return this.getDB()
   .then((db:SQLiteObject) =>
 {
-  let sql = 'select * from items';
-  let data:any = [];
+  let sql = 'select * from items where user_id=?';
+  let data:any = [uid];
 
   if(name)
   {
@@ -588,13 +589,13 @@ public getAllItems(name:string = null)
 .catch((e) => console.error(e));
 }
 
-public getAllSpells(name:string = null)
+public getAllSpells(name:string = null,uid:string)
 {
   return this.getDB()
   .then((db:SQLiteObject) =>
 {
-  let sql = 'select * from spells';
-  let data:any = [];
+  let sql = 'select * from spells where user_id=?';
+  let data:any = [uid];
 
   if(name)
   {
@@ -627,13 +628,13 @@ public getAllSpells(name:string = null)
 .catch((e) => console.error(e));
 }
 
-public getAllMonsters(name:string = null)
+public getAllMonsters(name:string = null,uid:string)
 {
   return this.getDB()
   .then((db:SQLiteObject) =>
 {
-  let sql = 'select * from monsters';
-  let data:any = [];
+  let sql = 'select * from monsters where user_id=?';
+  let data:any = [uid];
 
   if(name)
   {
@@ -665,13 +666,13 @@ public getAllMonsters(name:string = null)
 .catch((e) => console.error(e));
 }
 
-public getAllNotes(name:string = null)
+public getAllNotes(name:string = null,uid:string)
 {
   return this.getDB()
   .then((db:SQLiteObject) =>
 {
-  let sql = 'select * from notes';
-  let data:any = [];
+  let sql = 'select * from notes where user_id=?';
+  let data:any = [uid];
 
   if(name)
   {

@@ -2,6 +2,7 @@ import { Component } from '@angular/core';
 import { IonicPage, NavController, NavParams } from 'ionic-angular';
 import { Spell } from '../../assets/classes/Spell';
 import { DatabaseProvider } from '../../providers/database/database';
+import { UserProvider } from '../../providers/user/user';
 
 /**
  * Generated class for the CreateSpellPage page.
@@ -20,7 +21,7 @@ export class CreateSpellPage {
   temp:Spell
   showFooter:boolean;
 
-  constructor(public navCtrl: NavController, public navParams: NavParams,public dbProvider:DatabaseProvider) {
+  constructor(public navCtrl: NavController, public navParams: NavParams,public dbProvider:DatabaseProvider,public userProvider:UserProvider) {
   this.temp=new Spell;
 
   }
@@ -33,7 +34,7 @@ export class CreateSpellPage {
 
   addSpell()
   {
-    this.dbProvider.insertSpell(this.temp);
+    this.dbProvider.insertSpell(this.temp,this.userProvider.userId);
     this.temp = new Spell;
     this.navCtrl.pop();
   }

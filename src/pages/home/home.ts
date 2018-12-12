@@ -8,6 +8,7 @@ import { CharListPage } from '../char-list/char-list';
 import { ItemListPage } from '../item-list/item-list';
 import { SpellListPage } from '../spell-list/spell-list';
 import {NoteListPage} from '../note-list/note-list'
+import { Observable } from '../../../node_modules/rxjs';
 
 
 
@@ -24,11 +25,17 @@ export class HomePage {
   username:string;
 
 
-  constructor(public navCtrl: NavController, private toast:ToastController, private dbProvider:DatabaseProvider,userProvider:UserProvider) {
+  constructor(public navCtrl: NavController, private toast:ToastController, private dbProvider:DatabaseProvider,public userProvider:UserProvider) {
 
-    this.username = userProvider.userName;
+    
 
 
+  }
+
+  ionViewWillEnter()
+  {
+
+    this.username=this.userProvider.userName;
   }
 
   goToCharList()

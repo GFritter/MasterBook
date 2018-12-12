@@ -22,7 +22,7 @@ export class CreateItemPage {
   temp:Item;
   showFooter:boolean;
 
-  constructor(public navCtrl: NavController, public navParams: NavParams,public dbProvider:DatabaseProvider,public user:UserProvider) {
+  constructor(public navCtrl: NavController, public navParams: NavParams,public dbProvider:DatabaseProvider,public userProvider:UserProvider) {
 
     this.temp = new Item;
   }
@@ -35,7 +35,7 @@ export class CreateItemPage {
 
   addItem()
   {
-    this.dbProvider.insertItem(this.temp);
+    this.dbProvider.insertItem(this.temp,this.userProvider.userId);
     this.temp = new Item;
     this.navCtrl.pop();
   }

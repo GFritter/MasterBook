@@ -21,7 +21,7 @@ export class ItemListPage {
 
   items:any[]=[];
 
-  constructor(public navCtrl: NavController, public navParams: NavParams,public dbProvider:DatabaseProvider,public user:UserProvider) {
+  constructor(public navCtrl: NavController, public navParams: NavParams,public dbProvider:DatabaseProvider,public userProvider:UserProvider) {
 
     
 
@@ -40,7 +40,7 @@ export class ItemListPage {
 
   getAllItems()
   {
-    this.dbProvider.getAllItems().then((data:any[])=>
+    this.dbProvider.getAllItems(null,this.userProvider.userId).then((data:any[])=>
   {
     this.items = data;
   })
@@ -53,12 +53,12 @@ export class ItemListPage {
 
   goToDetails(id:number)
   {
-    this.user.tempI=this.items[id];
+    this.userProvider.tempI=this.items[id];
   }
   
   delete(id)
   {
-    this.dbProvider.removeItem(id);
+    this.dbProvider.removeItem(id,this.userProvider.userId);
     this.getAllItems();
   }
 

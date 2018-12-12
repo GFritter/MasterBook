@@ -23,7 +23,7 @@ export class CreateNotePage {
 
   edit:boolean;
 
-  constructor(public navCtrl: NavController, public navParams: NavParams,public dbProvider:DatabaseProvider,public user:UserProvider) {
+  constructor(public navCtrl: NavController, public navParams: NavParams,public dbProvider:DatabaseProvider,public userProvider:UserProvider) {
   this.temp = new Note();
   this.edit=false;
   }
@@ -39,14 +39,14 @@ export class CreateNotePage {
 
   addNote()
   {
-    this.dbProvider.insertNote(this.temp);
+    this.dbProvider.insertNote(this.temp,this.userProvider.userId);
     this.temp= new Note();
     this.navCtrl.pop();
   }
 
   saveNote()
   {
-    this.dbProvider.updateNote(this.temp);
+    this.dbProvider.updateNote(this.temp,this.userProvider.userId);
     this.temp=new Note();
     this.navCtrl.pop();
   }
