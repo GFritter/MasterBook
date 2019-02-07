@@ -43,6 +43,6 @@
 
 </ion-content>
 
-<ion-footer>
-  <button ion-button (click) = "addSpell()">Add Spell </button>
+<ion-footer *ngIf="showFooter">
+  <button ion-button (click) = "buttonAction()">Add Spell </button>
 </ion-footer>

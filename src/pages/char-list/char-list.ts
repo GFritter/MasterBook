@@ -64,9 +64,9 @@ export class CharListPage {
     this.getAllCharacters();
   }
 
-  goToCreate()
+  goToCreate(param = null)
   {
-    this.navCtrl.push(CreateCharPage);
+    this.navCtrl.push(CreateCharPage,param);
 
   }
 

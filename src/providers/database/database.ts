@@ -201,11 +201,13 @@ public updateItem(item:Item,uid:string)
 
 public updateSpell(spell:Spell,uid:string)
   {
+
+    console.log("vou atualizar a spell" + spell.name +spell.id);
     return this.getDB()
     .then((db:SQLiteObject) =>
   {
-    let sql = 'update spells set name=?,type=?,level=?,casting=?,range=?,components=?,duration=?,description=? where id=? and user_id=?) ';
-    let data = [spell.name,spell.type,spell.level,spell.casting_time,spell.range,spell.components,spell.duration,spell.description,spell.id,unescapeIdentifier];
+    let sql = 'update spells set name=?,type=?,level=?,casting=?,range=?,components=?,duration=?,description=? where id=? and user_id=? ';
+    let data = [spell.name,spell.type,spell.level,spell.casting_time,spell.range,spell.components,spell.duration,spell.description,spell.id,uid];
 
     return db.executeSql(sql,data)
     .catch((e) => console.error(e));

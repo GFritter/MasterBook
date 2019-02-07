@@ -19,18 +19,21 @@ export class FirebaseProvider {
 
   async login (email:string,password:string,user:UserProvider)
   {
+    console.log("tentando login no firebase");
     try{
       const result = await this.afAuth.auth.signInWithEmailAndPassword(email,password);
       console.log(result);
 
       if(result)
-      {
+      { console.log("ok, aguardando o subscribe");
         await this.afAuth.authState.take(1).subscribe(data =>
         {
           user.userId=data.uid;
           console.log("setei o id" +user.userId+data.uid);
          let username = this.afDatabase.object(`profile/${data.uid}`).valueChanges();
           
+
+         
 
           username.take(1).subscribe((v:any) => {
             console.log(v);

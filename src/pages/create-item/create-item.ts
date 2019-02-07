@@ -21,16 +21,22 @@ export class CreateItemPage {
 
   temp:Item;
   showFooter:boolean;
+  edit:boolean;
 
   constructor(public navCtrl: NavController, public navParams: NavParams,public dbProvider:DatabaseProvider,public userProvider:UserProvider) {
 
     this.temp = new Item;
+    this.edit = false;
+
   }
 
   ionViewDidLoad() {
     console.log('ionViewDidLoad CreateItemPage');
-    if(this.navParams.data)
-     this.temp=this.navParams.data;
+    if(this.navParams.data[0] != null)
+     {
+       this.temp=this.navParams.data;
+       this.edit = true;
+     }
   }
 
   addItem()
@@ -38,6 +44,25 @@ export class CreateItemPage {
     this.dbProvider.insertItem(this.temp,this.userProvider.userId);
     this.temp = new Item;
     this.navCtrl.pop();
+  }
+
+  saveItem()
+  {
+    this.dbProvider.updateItem(this.temp,this.userProvider.userId);
+    this.temp = new Item;
+    this.navCtrl.pop();
+  }
+
+  buttonAction()
+  {
+    if(this.edit==true)
+      this.saveItem();
+
+    else
+      this.addItem();
+
+
+
   }
 
   setFooter(b:boolean)

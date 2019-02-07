@@ -30,10 +30,11 @@ export class CreateNotePage {
 
   ionViewDidLoad() {
     console.log('ionViewDidLoad CreateNotePage');
-    if(this.navParams.data)
+    if(this.navParams.data[0] != null)
     {
       this.temp = this.navParams.data;
       this.edit=true;
+
     }
   }
 
@@ -51,6 +52,14 @@ export class CreateNotePage {
     this.navCtrl.pop();
   }
   
+  buttonAction()
+  {
+    if(this.edit)
+      {this.saveNote();}
+
+    else
+      {this.addNote();}
+  }
 
   setFooter(b:boolean)
   {

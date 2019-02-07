@@ -47,9 +47,16 @@ export class NoteListPage {
   }
 
 
-  goToCreateNote(param=null)
+  goToCreateNote()
   {
-    this.navCtrl.push(CreateNotePage,param);
+  
+    this.navCtrl.push(CreateNotePage,null);
+  }
+
+  goToCreateNoteEdit(n)
+  {
+  
+    this.navCtrl.push(CreateNotePage,n);
   }
 
   goToDetails(id:number)

@@ -41,6 +41,8 @@ export class UserProvider {
     this.userId = this.fbProvider.getUID();
 
     this.userName = this.fbProvider.getUsername();
+
+    console.log("finished loading " + this.userName);
   }
 
 }

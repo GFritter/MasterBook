@@ -32,8 +32,7 @@
 
 
   <ion-footer *ngIf="showFooter">
-  <button  *ngIf="!edit" ion-button (click)="addNote()">Save Note</button>
-  <button *ngIf="edit" ion-button (click)="saveNote()">Save Note</button>
+  <button  ion-button (click)="buttonAction()">Save Note</button>
   </ion-footer>
 
 

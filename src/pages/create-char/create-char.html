@@ -16,79 +16,79 @@
 <ion-content padding>
 
   Name
-  <ion-input color="input_space_color" (ionFocus)="changeFooter()" (ionBlur)="changeFooter()"  [(ngModel)] = 'temp.name'>
+  <ion-input color="input_space_color"(ionFocus)="setFooter(false)" (ionBlur)="setFooter(true)"  [(ngModel)] = 'temp.name'>
     
   </ion-input>
 
   <br>
   Class
-  <ion-input (ionFocus)="changeFooter()" (ionBlur)="changeFooter()"   [(ngModel)] = 'temp.class' color="input_space_color">
+  <ion-input (ionFocus)="setFooter(false)" (ionBlur)="setFooter(true)"   [(ngModel)] = 'temp.class' color="input_space_color">
       
    </ion-input>
 
    <br>
 
    Race
-   <ion-input (ionFocus)="changeFooter()" (ionBlur)="changeFooter()"  [(ngModel)] = 'temp.race' color="input_space_color">
+   <ion-input (ionFocus)="setFooter(false)" (ionBlur)="setFooter(true)" [(ngModel)] = 'temp.race' color="input_space_color">
      
    </ion-input>
 
     <br>
     Level
-  <ion-input (ionFocus)="changeFooter()" (ionBlur)="changeFooter()"  [(ngModel)] = 'temp.level' color="input_space_color">
+  <ion-input (ionFocus)="setFooter(false)" (ionBlur)="setFooter(true)" [(ngModel)] = 'temp.level' color="input_space_color">
     
   </ion-input>
 
   <br>
 
   Alignment
-  <ion-input (ionFocus)="changeFooter()" (ionBlur)="changeFooter()"   [(ngModel)] = "temp.alignment" color="input_space_color">
+  <ion-input (ionFocus)="setFooter(false)" (ionBlur)="setFooter(true)"   [(ngModel)] = "temp.alignment" color="input_space_color">
 
   </ion-input>
 
-  <ion-grid (ionFocus)="changeFooter()" (ionBlur)="changeFooter()"  >
+  <ion-grid  >
     <ion-row>
       <ion-col>STR
-        <input type="number" [(ngModel)] = 'temp.strength'>
+        <input (ionFocus)="setFooter(false)" (ionBlur)="setFooter(true)" type="number" [(ngModel)] = 'temp.strength'>
       </ion-col> 
       <ion-col>DEX 
-        <input type="number"  [(ngModel)] = 'temp.dexterity'>
+        <input (ionFocus)="setFooter(false)" (ionBlur)="setFooter(true)" type="number"  [(ngModel)] = 'temp.dexterity'>
       </ion-col> 
     </ion-row>
     <!---->
     <ion-row>  
       <ion-col>CON
-        <input type="number"  [(ngModel)] = 'temp.constitution'>
+        <input (ionFocus)="setFooter(false)" (ionBlur)="setFooter(true)" type="number"  [(ngModel)] = 'temp.constitution'>
       </ion-col> 
       <ion-col>INT 
-        <input type="number"  [(ngModel)] = 'temp.inteligence'>
+        <input (ionFocus)="setFooter(false)" (ionBlur)="setFooter(true)" type="number"  [(ngModel)] = 'temp.inteligence'>
       </ion-col>
     </ion-row>
     <!---->
     <ion-row> 
       <ion-col>WIS
-        <input type="number"  [(ngModel)] = 'temp.wisdom'>
+        <input (ionFocus)="setFooter(false)" (ionBlur)="setFooter(true)" type="number"  [(ngModel)] = 'temp.wisdom'>
       </ion-col>
       <ion-col>CHA 
-        <input type="number"  [(ngModel)] = 'temp.charisma'>
+        <input (ionFocus)="setFooter(false)" (ionBlur)="setFooter(true)" type="number"  [(ngModel)] = 'temp.charisma'>
       </ion-col>
     </ion-row>
   </ion-grid>
 
   HP
-  <input (ionFocus)="changeFooter()" (ionBlur)="changeFooter()"   type="number" [(ngModel)] = 'temp.hp_max'>
+  <input (ionFocus)="setFooter(false)" (ionBlur)="setFooter(true)"   type="number" [(ngModel)] = 'temp.hp_max'>
 
   Armor Class
-  <input (ionFocus)="changeFooter()" (ionBlur)="changeFooter()"   type="number" [(ngModel)] = 'temp.ac'>
+  <input (ionFocus)="setFooter(false)" (ionBlur)="setFooter(true)"   type="number" [(ngModel)] = 'temp.ac'>
 
   Experience
-  <input (ionFocus)="changeFooter()" (ionBlur)="changeFooter()"   type="number" [(ngModel)] = 'temp.experience'>
+  <input (ionFocus)="setFooter(false)" (ionBlur)="setFooter(true)"   type="number" [(ngModel)] = 'temp.experience'>
 
   <br>
   <br>
   <br>
   Background
-  <ion-input (ionFocus)="changeFooter()" (ionBlur)="changeFooter()"   item-height="30em" [(ngModel)] = 'temp.background'>
+  <ion-input (ionFocus)="setFooter(false)" (ionBlur)="setFooter(true)"   item-height="30em" [(ngModel)] = 'temp.background'>
     
   </ion-input>
 
@@ -98,6 +98,6 @@
 
 <ion-footer *ngIf ="showFooter">
   <ion-toolbar>
-    <button ion-button (click)='addCharacter()'> Adicionar </button>
+    <button ion-button (click)='buttonAction()'> Adicionar </button>
   </ion-toolbar>
 </ion-footer>

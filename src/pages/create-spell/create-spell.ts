@@ -20,16 +20,23 @@ export class CreateSpellPage {
 
   temp:Spell
   showFooter:boolean;
+  edit:boolean;
 
   constructor(public navCtrl: NavController, public navParams: NavParams,public dbProvider:DatabaseProvider,public userProvider:UserProvider) {
   this.temp=new Spell;
+  this.edit = false;
 
   }
 
   ionViewDidLoad() {
     console.log('ionViewDidLoad CreateSpellPage');
-    if(this.navParams.data)
+    if(this.navParams.data[0] !=null)
+    {
       this.temp = this.navParams.data;
+      this.edit = true;
+
+      console.log("entering in edit mode because" + this.navParams.data);
+    }
   }
 
   addSpell()
@@ -37,6 +44,23 @@ export class CreateSpellPage {
     this.dbProvider.insertSpell(this.temp,this.userProvider.userId);
     this.temp = new Spell;
     this.navCtrl.pop();
+  }
+
+  saveSpell()
+  {
+    this.dbProvider.updateSpell(this.temp,this.userProvider.userId);
+    this.temp = new Spell;
+    this.navCtrl.pop();
+
+  }
+
+  buttonAction()
+  {
+    if(this.edit)
+      {this.saveSpell();}
+
+    else 
+    { this.addSpell();}
   }
 
   setFooter(b:boolean)

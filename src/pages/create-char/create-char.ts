@@ -3,6 +3,7 @@ import { IonicPage, NavController, NavParams } from 'ionic-angular';
 import { DatabaseProvider } from '../../providers/database/database';
 import { Character } from '../../assets/classes/Character';
 import { UserProvider } from '../../providers/user/user';
+import { iterateListLike } from '../../../node_modules/@angular/core/src/change_detection/change_detection_util';
 
 /**
  * Generated class for the CreateCharPage page.
@@ -19,6 +20,7 @@ import { UserProvider } from '../../providers/user/user';
 export class CreateCharPage {
 
   temp:Character;
+  edit:boolean;
 
   name:string;
   class:string;
@@ -29,6 +31,14 @@ export class CreateCharPage {
 
   constructor(public navCtrl: NavController, public navParams: NavParams,private dbProvider:DatabaseProvider,public userProvider:UserProvider) {
     this.temp = new Character();
+
+    if(this.navParams.data[0] != null)
+    {
+      this.temp = this.navParams.data;
+      this.edit = true;
+
+    }
+
   }
 
   ionViewDidLoad() {
@@ -43,10 +53,26 @@ export class CreateCharPage {
     this.navCtrl.pop();
   }
 
-  changeFooter()
+  saveCharacter()
   {
-    this.showFooter = !this.showFooter;
-    console.log("troquei o footer "+this.showFooter);
+    this.dbProvider.updateCharacter(this.temp,this.userProvider.userId);
+    this.temp= new Character();
+    this.navCtrl.pop();
+  }
+
+  buttonAction()
+  {
+    if(this.edit)
+      this.saveCharacter();
+
+    else 
+      this.addCharacter();
+  }
+
+
+  setFooter(bool)
+  {
+    this.showFooter = bool
   }
 }
 

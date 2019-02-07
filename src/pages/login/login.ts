@@ -35,11 +35,13 @@ export class LoginPage {
 
  async login()
  {
-    if(this.fbProvider.login(this.email,this.password,this.userProvider))
+    if(await this.fbProvider.login(this.email,this.password,this.userProvider))
     {
+    
       
    
       this.navCtrl.setRoot(HomePage);
+      
     }
 
  }

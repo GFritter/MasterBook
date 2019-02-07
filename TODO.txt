@@ -1,0 +1,14 @@
+
+LOGIN:
+    wrong password
+
+PERKS:
+    not implemented
+
+INVENTORY:
+    not implemented
+
+FIREBASE:
+    username not registering
+    
+
